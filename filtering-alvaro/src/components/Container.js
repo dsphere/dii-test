@@ -5,8 +5,9 @@ import PlayersTable from './PlayersTable'
 const Container = (props) => {
   return(
     <React.Fragment>
-      <Filters />
-      {props.allPlayers ? <PlayersTable allPlayers={props.allPlayers}/> : null}
+      <Filters getState={props.getState} uniqueStates={props.uniqueStates} gender={props.gender} handleCheckBox={props.handleCheckBox} handleChangeAge={props.handleChangeAge} displayAll={props.displayAll} getAll={props.getAll}/>
+      {props.allPlayers ?
+      <PlayersTable allPlayers={props.allPlayers}/> : null}
     </React.Fragment>
   )
 }

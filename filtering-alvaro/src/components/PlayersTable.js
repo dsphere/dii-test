@@ -12,6 +12,7 @@ const PlayersTable = (props) => {
             <Table.HeaderCell>Gender</Table.HeaderCell>
             <Table.HeaderCell>State</Table.HeaderCell>
             <Table.HeaderCell>Status</Table.HeaderCell>
+            <Table.HeaderCell></Table.HeaderCell>
           </Table.Row>
         </Table.Header>
 
@@ -20,15 +21,15 @@ const PlayersTable = (props) => {
           <Table.Row key={i} className="table-row">
             <Table.Cell>{player.name}</Table.Cell>
             <Table.Cell>{player.age}</Table.Cell>
-            <Table.Cell>{player.gender}</Table.Cell>
+            <Table.Cell>{player.gender.charAt(0).toUpperCase() + player.gender.slice(1)}</Table.Cell>
             <Table.Cell>{player.state}</Table.Cell>
             <Popup
             content={player.status === "active" ? "Active" : "Inactive"}
             trigger={
             <Table.Cell>
-              <Icon name={player.status === "active" ? "check" : "close"} color={player.status === "active" ? "green" : "red"} size="medium"/>
+              <Icon name={player.status === "active" ? "check" : "close"} color={player.status === "active" ? "green" : "red"}/>
             </Table.Cell>} />
-
+            <Popup content="Edit" trigger={<Table.Cell><Icon name="edit" /></Table.Cell>} />
           </Table.Row> )}
         </Table.Body>
       </Table>
