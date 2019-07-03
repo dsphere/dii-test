@@ -38,5 +38,15 @@ body, html {
     *display: inline; /* For IE7 */
     zoom: 1; /* Trigger hasLayout */
     width: 20%;
-  
+}
+
+.table-row:hover {
+  background-color: #E0E0E0E0;
+  cursor: pointer;
+  -webkit-transition: all .6s ease;
+  -moz-transition: all .6s ease;
+  -o-transition: all .6s ease;
+  -ms-transition: all .6s ease;
+  transition: all .6s ease;
+  transition: all .6s ease ;
 }
