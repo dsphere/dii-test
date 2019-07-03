@@ -1,5 +1,5 @@
 import React from 'react'
-import { Input, Checkbox, Dropdown, Grid } from 'semantic-ui-react'
+import { Input, Checkbox, Dropdown, Grid, Button } from 'semantic-ui-react'
 
 const states = [
    {text: "Alabama", value: 'AL'},
@@ -65,7 +65,8 @@ const states = [
 
 const Filters = (props) => {
   return(
-      <Grid>
+    <React.Fragment>
+      <Grid style={{textAlign: "center", width: "100%", marginBottom: "20px"}}>
         <Grid.Row>
           <Grid.Column width={2}>
             <div>
@@ -82,8 +83,8 @@ const Filters = (props) => {
           <Grid.Column width={2}>
           <div>
             <p style={{fontWeight: "bold"}}>Gender</p>
-            <Checkbox onChange={props.handleCheckBox} checked={props.gender === 'Male'} label="Male" name="gender" value="male" /><br/>
-            <Checkbox onChange={props.handleCheckBox} checked={props.gender === 'Female'} label="Female" name="gender" value="female" />
+            <Checkbox onChange={props.handleCheckBox} checked={props.gender === 'male'} label="Male" name="gender" value="male" /><br/>
+            <Checkbox onChange={props.handleCheckBox} checked={props.gender === 'female'} label="Female" name="gender" value="female" />
           </div>
           </Grid.Column>
           <Grid.Column width={2}>
@@ -95,14 +96,14 @@ const Filters = (props) => {
           <Grid.Column width={2}>
             <div>
               <p style={{fontWeight: "bold"}}>Status</p>
-              <Checkbox onChange={props.handleCheckBox} checked={props.status === 'Active'} name="status" label="Active" value="active" /><br/>
-              <Checkbox onChange={props.handleCheckBox} checked={props.status === 'Inactive'} name="status" label="Inactive" value="inactive" />
+              <Checkbox onChange={props.handleCheckBox} checked={props.status === 'active'} name="status" label="Active" value="active" /><br/>
+              <Checkbox onChange={props.handleCheckBox} checked={props.status === 'inactive'} name="status" label="Inactive" value="inactive" />
             </div>
           </Grid.Column>
         </Grid.Row>
       </Grid>
-
-
+      <Button style={{marginBottom: "40px"}} onClick={props.applyFilters}>Search</Button>
+    </React.Fragment>
   )
 }
 

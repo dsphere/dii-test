@@ -8,12 +8,15 @@ class App extends React.Component {
     super()
     this.state={
       allPlayers: null,
+      filteredPlayers: null,
       displayAll: true,
       ageFrom: "",
       ageTo: "",
       gender: "",
       status: "",
-      selectedState: ""
+      selectedState: "",
+      filtersApplied: {},
+      isEdit: false
     }
   }
 
@@ -22,22 +25,23 @@ class App extends React.Component {
   }
 
   getPlayers = () => {
+    let counter = 0
     fetch('https://dii-test.s3.amazonaws.com/players.json')
     .then(response => response.json())
     .then(json => {
+      json.map(player => player["id"] = counter++)
       // let states = json.map(players => players.state)
       // let uniqueStates = [...new Set(states)].sort()
       this.setState({
-        allPlayers: json
+        allPlayers: json,
+        filteredPlayers: json
       })
     })
   }
 
   getAll = () => {
-    let allPlayers = [...this.state.allPlayers]
     this.setState({
-      displayAll: !this.state.displayAll,
-      allPlayers: allPlayers
+      displayAll: !this.state.displayAll
     })
   }
 
@@ -49,7 +53,7 @@ class App extends React.Component {
 
   handleCheckBox = (e, {name}) => {
     this.setState({
-      [name]: e.target.innerText
+      [name]: e.target.innerText.toLowerCase()
     })
   }
 
@@ -59,11 +63,24 @@ class App extends React.Component {
     })
   }
 
+  applyFilters = () => {
+    let filteredPlayers = this.state.allPlayers.filter(players => players.gender === this.state.gender || players.state === this.state.selectedState || players.status === this.state.status)
+    this.setState({
+      filteredPlayers: filteredPlayers
+    })
+  }
+
+  editUser = (player) => {
+    this.setState({
+      isEdit: true
+    })
+  }
+
   render(){
     return (
       <div className="App">
         <Nav />
-        <Container getState={this.getState} uniqueStates={this.state.uniqueStates} gender={this.state.gender} handleCheckBox={this.handleCheckBox} handleChangeAge={this.handleChangeAge} displayAll={this.state.displayAll} getAll={this.getAll} allPlayers={this.state.allPlayers}/>
+        <Container isEdit={this.state.isEdit} editUser={this.editUser} applyFilters={this.applyFilters} status={this.state.status} getState={this.getState} uniqueStates={this.state.uniqueStates} gender={this.state.gender} handleCheckBox={this.handleCheckBox} handleChangeAge={this.handleChangeAge} displayAll={this.state.displayAll} getAll={this.getAll} filteredPlayers={this.state.filteredPlayers}/>
       </div>
     );
   }
