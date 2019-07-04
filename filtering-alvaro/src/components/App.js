@@ -7,16 +7,18 @@ class App extends React.Component {
   constructor() {
     super()
     this.state={
-      allPlayers: null,
-      filteredPlayers: null,
-      displayAll: true,
-      ageFrom: "",
-      ageTo: "",
-      gender: "",
-      status: "",
-      selectedState: "",
-      filtersApplied: {},
-      isEdit: false
+      allPlayers: [],
+      filteredPlayers: [],
+      filters: {
+        allFilter: "noFilter",
+        ageFilter: "noFilter",
+        genderFilter: "noFilter",
+        stateFilter: "noFilter",
+        statusFilter: "noFilter"
+      },
+      isEdit: false,
+      playerToEdit: null,
+      all: true
     }
   }
 
@@ -30,49 +32,75 @@ class App extends React.Component {
     .then(response => response.json())
     .then(json => {
       json.map(player => player["id"] = counter++)
-      // let states = json.map(players => players.state)
-      // let uniqueStates = [...new Set(states)].sort()
       this.setState({
         allPlayers: json,
         filteredPlayers: json
-      })
+      });
     })
   }
 
-  getAll = () => {
+  handleFilterChange = (newValue, filter) => {
+    let filters = {...this.state.filters}
+    filters[filter] = newValue
     this.setState({
-      displayAll: !this.state.displayAll
-    })
+      filters: filters
+    });
+  };
+
+  displayAll = () => {
+    this.setState({
+      all: !this.state.displayAll
+    });
   }
 
-  handleChangeAge = (e) => {
-    this.setState({
-      [e.target.name]: parseInt(e.target.value)
-    })
-  }
+  filteredPlayers = () => {
+    const {
+      allFilter,
+      ageFilter,
+      genderFilter,
+      stateFilter,
+      statusFilter
+    } = this.state.filters
 
-  handleCheckBox = (e, {name}) => {
-    this.setState({
-      [name]: e.target.innerText.toLowerCase()
-    })
-  }
+    let players = [...this.state.filteredPlayers];
 
-  getState = (e, {value}) => {
-    this.setState({
-      selectedState: value
-    })
-  }
+    if(allFilter !== "noFilter"){
+      players = players.filter(player => {
+        return player;
+      });
+    }
 
-  applyFilters = () => {
-    let filteredPlayers = this.state.allPlayers.filter(players => players.gender === this.state.gender || players.state === this.state.selectedState || players.status === this.state.status)
-    this.setState({
-      filteredPlayers: filteredPlayers
-    })
-  }
+    if(genderFilter !== "noFilter"){
+      players = players.filter(player => {
+        return player.gender === genderFilter;
+      });
+    }
 
-  editUser = (player) => {
+    if(stateFilter !== "noFilter"){
+      players = players.filter(player => {
+        return player.state === stateFilter;
+      });
+    }
+
+    if(statusFilter !== "noFilter"){
+      players = players.filter(player => {
+        return player.status === statusFilter;
+      });
+    }
+
+    if(statusFilter !== "noFilter"){
+      players = players.filter(player => {
+        return player.status === statusFilter;
+      });
+    }
+
+    return players;
+  };
+
+  editUser = (playerObj) => {
     this.setState({
-      isEdit: true
+      isEdit: true,
+      playerToEdit: playerObj
     })
   }
 
@@ -80,7 +108,7 @@ class App extends React.Component {
     return (
       <div className="App">
         <Nav />
-        <Container isEdit={this.state.isEdit} editUser={this.editUser} applyFilters={this.applyFilters} status={this.state.status} getState={this.getState} uniqueStates={this.state.uniqueStates} gender={this.state.gender} handleCheckBox={this.handleCheckBox} handleChangeAge={this.handleChangeAge} displayAll={this.state.displayAll} getAll={this.getAll} filteredPlayers={this.state.filteredPlayers}/>
+        <Container displayAll={this.displayAll} all={this.state.all} playerToEdit={this.state.playerToEdit} isEdit={this.state.isEdit} editUser={this.editUser} players={this.filteredPlayers()} handleFilterChange={this.handleFilterChange} getAll={this.getAll} />
       </div>
     );
   }

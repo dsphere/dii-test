@@ -1,5 +1,5 @@
 import React from 'react'
-import { Input, Checkbox, Dropdown, Grid, Button } from 'semantic-ui-react'
+import { Input, Checkbox, Dropdown, Segment, Button } from 'semantic-ui-react'
 
 const states = [
    {text: "Alabama", value: 'AL'},
@@ -64,45 +64,22 @@ const states = [
 ]
 
 const Filters = (props) => {
+
+  const optionsGender = [{key: "M", text: "Male", value: "male"}, {key: "F", text: "Female", value: "female"}]
+  const optionsStatus = [{key: "A", text: "Active", value: "active"}, {key: "I", text: "Inactive", value: "inactive"}]
+
   return(
     <React.Fragment>
-      <Grid style={{textAlign: "center", width: "100%", marginBottom: "20px"}}>
-        <Grid.Row>
-          <Grid.Column width={2}>
-            <div>
-              <Checkbox onChange={props.getAll} checked={props.displayAll} label="All" value="all" />
-            </div>
-          </Grid.Column>
-          <Grid.Column width={2}>
-            <div>
-              <p style={{fontWeight: "bold"}}>Age</p>
-              <Input onChange={props.handleChangeAge} name='ageFrom' type='number' placeholder='From' />
-              <Input onChange={props.handleChangeAge} name='ageTo' type='number' placeholder='To' />
-            </div>
-          </Grid.Column>
-          <Grid.Column width={2}>
-          <div>
-            <p style={{fontWeight: "bold"}}>Gender</p>
-            <Checkbox onChange={props.handleCheckBox} checked={props.gender === 'male'} label="Male" name="gender" value="male" /><br/>
-            <Checkbox onChange={props.handleCheckBox} checked={props.gender === 'female'} label="Female" name="gender" value="female" />
-          </div>
-          </Grid.Column>
-          <Grid.Column width={2}>
-            <div>
-              <p style={{fontWeight: "bold"}}>State</p>
-              <Dropdown onChange={props.getState} selection placeholder='Choose a State' options={states}/>
-            </div>
-          </Grid.Column>
-          <Grid.Column width={2}>
-            <div>
-              <p style={{fontWeight: "bold"}}>Status</p>
-              <Checkbox onChange={props.handleCheckBox} checked={props.status === 'active'} name="status" label="Active" value="active" /><br/>
-              <Checkbox onChange={props.handleCheckBox} checked={props.status === 'inactive'} name="status" label="Inactive" value="inactive" />
-            </div>
-          </Grid.Column>
-        </Grid.Row>
-      </Grid>
-      <Button style={{marginBottom: "40px"}} onClick={props.applyFilters}>Search</Button>
+      <Segment>
+        <center>
+          <Checkbox onChange={(_, data) => {props.handleFilterChange(data.value, "allFilter"); props.displayAll()}} checked={props.all} label="All" value="all" />
+          <Input onChange={props.handleChangeAge} name='ageFrom' type='number' placeholder='From' />
+          <Input onChange={props.handleChangeAge} name='ageTo' type='number' placeholder='To' />
+          <Dropdown selection onChange={(_, data) => {props.handleFilterChange(data.value, "genderFilter")}} options={optionsGender} placeholder="Filter By Gender" />
+          <Dropdown selection onChange={(_, data) => {props.handleFilterChange(data.value, "stateFilter")}}  options={states} placeholder='Filter By State' />
+          <Dropdown selection onChange={(_, data) => {props.handleFilterChange(data.value, "statusFilter")}} options={optionsStatus} placeholder="Filter By Status"/><br/>
+        </center>
+      </Segment>
     </React.Fragment>
   )
 }
