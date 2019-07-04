@@ -1,5 +1,6 @@
 import React from 'react'
-import { Table, Icon, Popup, Input } from 'semantic-ui-react'
+import { Table, Icon, Popup, Input, Dropdown } from 'semantic-ui-react'
+import { stateOptions, genderOptions, statusOptions} from "./../misc/DropdownOptions";
 
 const PlayersTable = (props) => {
   return(
@@ -19,10 +20,10 @@ const PlayersTable = (props) => {
         <Table.Body>
           {props.players.map((player, i) =>
           <Table.Row key={i} player-id={player.id} className="table-row">
-            {props.playerToEdit && player.id === props.playerToEdit.id ? <Input style={{width: "60%"}} size="tiny" type='text' value={player.name}/> : <Table.Cell>{player.name}</Table.Cell> }
-            {props.playerToEdit && player.id === props.playerToEdit.id ? <Input style={{width: "60%"}} size="tiny" type='text' value={player.age}/> :  <Table.Cell>{player.age}</Table.Cell> }
-            {props.playerToEdit && player.id === props.playerToEdit.id ? <Input style={{width: "60%"}} size="tiny" type='text' value={player.gender.charAt(0).toUpperCase() + player.gender.slice(1)}/> : <Table.Cell>{player.gender.charAt(0).toUpperCase() + player.gender.slice(1)}</Table.Cell> }
-            {props.playerToEdit && player.id === props.playerToEdit.id ? <Input style={{width: "60%"}} size="tiny" type='text' value={player.state}/> :  <Table.Cell>{player.state}</Table.Cell> }
+            {props.playerToEdit && player.id === props.playerToEdit.id ? <Input style={{width: "40%"}} size="tiny" type='text' value={player.name}/> : <Table.Cell>{player.name}</Table.Cell> }
+            {props.playerToEdit && player.id === props.playerToEdit.id ? <Input style={{width: "40%"}} size="tiny" type='number' value={player.age}/> :  <Table.Cell>{player.age}</Table.Cell> }
+            {props.playerToEdit && player.id === props.playerToEdit.id ? <Dropdown style={{width: "40%"}} selection size="small" options={genderOptions} value={player.gender.charAt(0).toUpperCase() + player.gender.slice(1)}/> : <Table.Cell>{player.gender.charAt(0).toUpperCase() + player.gender.slice(1)}</Table.Cell> }
+            {props.playerToEdit && player.id === props.playerToEdit.id ? <Dropdown style={{width: "40%"}} selection size="small" options={stateOptions} value={player.state}/> :  <Table.Cell>{player.state}</Table.Cell> }
             <Popup
             content={player.status === "active" ? "Active" : "Inactive"}
             trigger={
