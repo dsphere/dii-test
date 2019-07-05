@@ -62,15 +62,7 @@ class App extends React.Component {
       statusFilter
     } = this.state.filters
 
-    // let allPlayers = [...this.state.allPlayers]
     let players = [...this.state.filteredPlayers];
-
-    // if(allFilter === "all"){
-    //
-    //   players = allPlayers.filter(player => {
-    //     return player;
-    //   });
-    // }
 
     if(genderFilter !== "noFilter"){
       players = players.filter(player => {
@@ -100,9 +92,33 @@ class App extends React.Component {
   };
 
   editUser = (playerObj) => {
+    console.log(playerObj)
     this.setState({
       playerToEdit: playerObj,
       disabled: !this.state.disabled
+    })
+  }
+
+  handleChangeDropdownEdit = (value, fieldName) => {
+    let playerId = this.state.playerToEdit.id
+    let allPlayers = [...this.state.allPlayers]
+    allPlayers.find(player => player.id === playerId)[fieldName] = value
+    this.setState({
+      allPlayers: allPlayers
+    });
+  }
+
+  handleChangeInputEdit = (e, playerId) => {
+    let allPlayers = [...this.state.allPlayers]
+    allPlayers.find(player => player.id === playerId)[e.target.name] = e.target.value
+    this.setState({
+      allPlayers: allPlayers
+    })
+  }
+
+  savePlayer = () => {
+    this.setState({
+      playerToEdit: null
     })
   }
 
@@ -110,7 +126,7 @@ class App extends React.Component {
     return (
       <div className="App">
         <Nav />
-        <Container disabled={this.state.disabled} displayAll={this.displayAll} all={this.state.all} playerToEdit={this.state.playerToEdit} isEdit={this.state.isEdit} editUser={this.editUser} players={this.filteredPlayers()} handleFilterChange={this.handleFilterChange} getAll={this.getAll} />
+        <Container savePlayer={this.savePlayer} handleChangeInputEdit={this.handleChangeInputEdit} handleChangeDropdownEdit={this.handleChangeDropdownEdit} disabled={this.state.disabled} displayAll={this.displayAll} all={this.state.all} playerToEdit={this.state.playerToEdit} isEdit={this.state.isEdit} editUser={this.editUser} players={this.filteredPlayers()} handleFilterChange={this.handleFilterChange} getAll={this.getAll} />
       </div>
     );
   }

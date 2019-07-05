@@ -1,5 +1,5 @@
 import React from 'react'
-import { Input, Checkbox, Dropdown, Segment, Button } from 'semantic-ui-react'
+import { Input, Checkbox, Dropdown, Segment } from 'semantic-ui-react'
 import { stateOptions, genderOptions, statusOptions} from "./../misc/DropdownOptions";
 
 
