@@ -43,10 +43,8 @@ class App extends React.Component {
   }
 
   handleFilterChange = (newValue, filter) => {
-    console.log(newValue, filter)
     let filters = {...this.state.filters}
     filters[filter] = newValue
-    console.log(filters)
     this.setState({
       filters: filters
     });
@@ -87,13 +85,13 @@ class App extends React.Component {
 
     if(ageFromFilter !== "noFilter"){
       players = players.filter(player => {
-        return players.age >= ageFromFilter;
+        return player.age >= ageFromFilter;
       });
     }
 
     if(ageToFilter !== "noFilter"){
       players = players.filter(player => {
-        return players.age <= ageToFilter;
+        return player.age <= ageToFilter;
       });
     }
 
