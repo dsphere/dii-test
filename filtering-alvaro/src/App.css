@@ -36,8 +36,8 @@ body, html {
 .container > div {
     display: inline-block;
     display: -moz-inline-box;
-    *display: inline; /* For IE7 */
-    zoom: 1; /* Trigger hasLayout */
+    *display: inline;
+    zoom: 1; 
     width: 20%;
 }
 
@@ -50,4 +50,8 @@ body, html {
   -ms-transition: all .6s ease;
   transition: all .6s ease;
   transition: all .6s ease ;
+}
+
+.ui.disabled.dropdown {
+  opacity: 1;
 }

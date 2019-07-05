@@ -7,7 +7,7 @@ const Container = (props) => {
   return(
     <React.Fragment>
       <Filters displayAll={props.displayAll} all={props.all} handleFilterChange={props.handleFilterChange} getAll={props.getAll}/>
-      <PlayersTable playerToEdit={props.playerToEdit} isEdit={props.isEdit} editUser={props.editUser} players={props.players} />
+      <PlayersTable disabled={props.disabled} playerToEdit={props.playerToEdit} editUser={props.editUser} players={props.players} />
     </React.Fragment>
   )
 }

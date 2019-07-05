@@ -4,14 +4,13 @@ import { stateOptions, genderOptions, statusOptions} from "./../misc/DropdownOpt
 
 
 const Filters = (props) => {
-
   return(
     <React.Fragment>
       <Segment>
         <center>
           <Checkbox onChange={(_, data) => {props.handleFilterChange(data.value, "allFilter"); props.displayAll()}} checked={props.all} label="All" value="all" />
-          <Input onChange={props.handleChangeAge} name='ageFrom' type='number' placeholder='From' />
-          <Input onChange={props.handleChangeAge} name='ageTo' type='number' placeholder='To' />
+          <Input onChange={props.handleChangeAge} name='ageFrom' type='number' placeholder='Age From' />
+          <Input onChange={props.handleChangeAge} name='ageTo' type='number' placeholder='Age To' />
           <Dropdown selection onChange={(_, data) => {props.handleFilterChange(data.value, "genderFilter")}} options={genderOptions} placeholder="Filter By Gender" />
           <Dropdown selection onChange={(_, data) => {props.handleFilterChange(data.value, "stateFilter")}}  options={stateOptions} placeholder='Filter By State' />
           <Dropdown selection onChange={(_, data) => {props.handleFilterChange(data.value, "statusFilter")}} options={statusOptions} placeholder="Filter By Status"/><br/>

@@ -16,9 +16,9 @@ class App extends React.Component {
         stateFilter: "noFilter",
         statusFilter: "noFilter"
       },
-      isEdit: false,
       playerToEdit: null,
-      all: true
+      all: true,
+      disabled: true
     }
   }
 
@@ -62,13 +62,15 @@ class App extends React.Component {
       statusFilter
     } = this.state.filters
 
+    // let allPlayers = [...this.state.allPlayers]
     let players = [...this.state.filteredPlayers];
 
-    if(allFilter !== "noFilter"){
-      players = players.filter(player => {
-        return player;
-      });
-    }
+    // if(allFilter === "all"){
+    //
+    //   players = allPlayers.filter(player => {
+    //     return player;
+    //   });
+    // }
 
     if(genderFilter !== "noFilter"){
       players = players.filter(player => {
@@ -99,8 +101,8 @@ class App extends React.Component {
 
   editUser = (playerObj) => {
     this.setState({
-      isEdit: true,
-      playerToEdit: playerObj
+      playerToEdit: playerObj,
+      disabled: !this.state.disabled
     })
   }
 
@@ -108,7 +110,7 @@ class App extends React.Component {
     return (
       <div className="App">
         <Nav />
-        <Container displayAll={this.displayAll} all={this.state.all} playerToEdit={this.state.playerToEdit} isEdit={this.state.isEdit} editUser={this.editUser} players={this.filteredPlayers()} handleFilterChange={this.handleFilterChange} getAll={this.getAll} />
+        <Container disabled={this.state.disabled} displayAll={this.displayAll} all={this.state.all} playerToEdit={this.state.playerToEdit} isEdit={this.state.isEdit} editUser={this.editUser} players={this.filteredPlayers()} handleFilterChange={this.handleFilterChange} getAll={this.getAll} />
       </div>
     );
   }
