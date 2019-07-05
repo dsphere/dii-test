@@ -11,20 +11,23 @@ class App extends React.Component {
       filteredPlayers: [],
       filters: {
         allFilter: "noFilter",
-        ageFilter: "noFilter",
+        ageFromFilter: "noFilter",
+        ageToFilter: "noFilter",
         genderFilter: "noFilter",
         stateFilter: "noFilter",
         statusFilter: "noFilter"
       },
       playerToEdit: null,
       all: true,
-      disabled: true
+      disabled: true,
+      ageOptions: []
     }
   }
 
   componentDidMount(){
-    this.getPlayers()
-  }
+    this.getPlayers();
+    this.ageOptions();
+  };
 
   getPlayers = () => {
     let counter = 0
@@ -43,10 +46,11 @@ class App extends React.Component {
     console.log(newValue, filter)
     let filters = {...this.state.filters}
     filters[filter] = newValue
+    console.log(filters)
     this.setState({
       filters: filters
     });
-  };
+  }
 
   displayAll = () => {
     this.setState({
@@ -57,7 +61,8 @@ class App extends React.Component {
   filteredPlayers = () => {
     const {
       allFilter,
-      ageFilter,
+      ageFromFilter,
+      ageToFilter,
       genderFilter,
       stateFilter,
       statusFilter
@@ -69,6 +74,8 @@ class App extends React.Component {
       this.setState({
         filters: {
           allFilter: "noFilter",
+          ageFromFilter: "noFilter",
+          ageToFilter: "noFilter",
           ageFilter: "noFilter",
           genderFilter: "noFilter",
           stateFilter: "noFilter",
@@ -78,8 +85,19 @@ class App extends React.Component {
       return players;
     }
 
+    if(ageFromFilter !== "noFilter"){
+      players = players.filter(player => {
+        return players.age >= ageFromFilter;
+      });
+    }
+
+    if(ageToFilter !== "noFilter"){
+      players = players.filter(player => {
+        return players.age <= ageToFilter;
+      });
+    }
+
     if(genderFilter !== "noFilter"){
-      let allFilter = "noFilter"
       players = players.filter(player => {
         return player.gender === genderFilter;
       });
@@ -102,9 +120,8 @@ class App extends React.Component {
         return player.status === statusFilter;
       });
     }
-
     return players;
-  };
+  }
 
   editUser = (playerObj) => {
     this.setState({
@@ -127,20 +144,31 @@ class App extends React.Component {
     allPlayers.find(player => player.id === playerId)[e.target.name] = e.target.value
     this.setState({
       allPlayers: allPlayers
-    })
+    });
   }
 
   savePlayer = () => {
     this.setState({
       playerToEdit: null
-    })
+    });
+  }
+
+  ageOptions = () => {
+    let ageOptions = [...this.state.ageOptions]
+    let obj = {}
+    for(let i = 1; i <= 20; i++){
+      ageOptions.push(obj[i] = {text: i.toString(), value: i.toString()})
+    };
+    this.setState({
+      ageOptions: ageOptions
+    });
   }
 
   render(){
     return (
       <div className="App">
         <Nav />
-        <Container savePlayer={this.savePlayer} handleChangeInputEdit={this.handleChangeInputEdit} handleChangeDropdownEdit={this.handleChangeDropdownEdit} disabled={this.state.disabled} displayAll={this.displayAll} all={this.state.all} playerToEdit={this.state.playerToEdit} isEdit={this.state.isEdit} editUser={this.editUser} players={this.filteredPlayers()} handleFilterChange={this.handleFilterChange} getAll={this.getAll} />
+        <Container ageOptions={this.state.ageOptions} avePlayer={this.savePlayer} handleChangeInputEdit={this.handleChangeInputEdit} handleChangeDropdownEdit={this.handleChangeDropdownEdit} disabled={this.state.disabled} displayAll={this.displayAll} all={this.state.all} playerToEdit={this.state.playerToEdit} isEdit={this.state.isEdit} editUser={this.editUser} players={this.filteredPlayers()} handleFilterChange={this.handleFilterChange} getAll={this.getAll} />
       </div>
     );
   }

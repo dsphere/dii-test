@@ -5,7 +5,7 @@ import PlayersTable from './PlayersTable'
 const Container = (props) => {
   return(
     <React.Fragment>
-      <Filters displayAll={props.displayAll} all={props.all} handleFilterChange={props.handleFilterChange} getAll={props.getAll}/>
+      <Filters ageOptions={props.ageOptions} displayAll={props.displayAll} all={props.all} handleFilterChange={props.handleFilterChange} getAll={props.getAll}/>
       <PlayersTable handleChangeInputEdit={props.handleChangeInputEdit} savePlayer={props.savePlayer} handleChangeDropdownEdit={props.handleChangeDropdownEdit} disabled={props.disabled} playerToEdit={props.playerToEdit} editUser={props.editUser} players={props.players} />
     </React.Fragment>
   )

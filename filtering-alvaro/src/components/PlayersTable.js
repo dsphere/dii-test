@@ -5,11 +5,12 @@ import { stateOptions, genderOptions, statusOptions} from "./../misc/DropdownOpt
 const PlayersTable = (props) => {
   return(
     <React.Fragment>
+      { props.players.length === 1 ? <p>{props.players.length} result</p> : <p>{props.players.length} results</p> }
       <Table style={{width: "80%", margin: "0 auto"}} basic='very'>
         <Table.Header>
           <Table.Row>
-            <Table.HeaderCell>Name</Table.HeaderCell>
-            <Table.HeaderCell>Age</Table.HeaderCell>
+            <Table.HeaderCell style={{width: "300px"}}>Name</Table.HeaderCell>
+            <Table.HeaderCell style={{width: "50px"}}>Age</Table.HeaderCell>
             <Table.HeaderCell>Gender</Table.HeaderCell>
             <Table.HeaderCell>State</Table.HeaderCell>
             <Table.HeaderCell>Status</Table.HeaderCell>
