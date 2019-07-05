@@ -40,6 +40,7 @@ class App extends React.Component {
   }
 
   handleFilterChange = (newValue, filter) => {
+    console.log(newValue, filter)
     let filters = {...this.state.filters}
     filters[filter] = newValue
     this.setState({
@@ -64,7 +65,21 @@ class App extends React.Component {
 
     let players = [...this.state.filteredPlayers];
 
+    if(allFilter !== "noFilter"){
+      this.setState({
+        filters: {
+          allFilter: "noFilter",
+          ageFilter: "noFilter",
+          genderFilter: "noFilter",
+          stateFilter: "noFilter",
+          statusFilter: "noFilter"
+        }
+      });
+      return players;
+    }
+
     if(genderFilter !== "noFilter"){
+      let allFilter = "noFilter"
       players = players.filter(player => {
         return player.gender === genderFilter;
       });
@@ -92,11 +107,10 @@ class App extends React.Component {
   };
 
   editUser = (playerObj) => {
-    console.log(playerObj)
     this.setState({
       playerToEdit: playerObj,
       disabled: !this.state.disabled
-    })
+    });
   }
 
   handleChangeDropdownEdit = (value, fieldName) => {

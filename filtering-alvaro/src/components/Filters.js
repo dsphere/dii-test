@@ -1,5 +1,5 @@
 import React from 'react'
-import { Input, Checkbox, Dropdown, Segment } from 'semantic-ui-react'
+import { Input, Checkbox, Dropdown, Segment, Button } from 'semantic-ui-react'
 import { stateOptions, genderOptions, statusOptions} from "./../misc/DropdownOptions";
 
 
@@ -8,7 +8,7 @@ const Filters = (props) => {
     <React.Fragment>
       <Segment>
         <center>
-          <Checkbox onChange={(_, data) => {props.handleFilterChange(data.value, "allFilter"); props.displayAll()}} checked={props.all} label="All" value="all" />
+          <Button onClick={(_, data) => {props.handleFilterChange(data.value, "allFilter")}} color="blue" value="all">All</Button>
           <Input onChange={props.handleChangeAge} name='ageFrom' type='number' placeholder='Age From' />
           <Input onChange={props.handleChangeAge} name='ageTo' type='number' placeholder='Age To' />
           <Dropdown selection onChange={(_, data) => {props.handleFilterChange(data.value, "genderFilter")}} options={genderOptions} placeholder="Filter By Gender" />
