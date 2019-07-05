@@ -166,7 +166,7 @@ class App extends React.Component {
     return (
       <div className="App">
         <Nav />
-        <Container ageOptions={this.state.ageOptions} avePlayer={this.savePlayer} handleChangeInputEdit={this.handleChangeInputEdit} handleChangeDropdownEdit={this.handleChangeDropdownEdit} disabled={this.state.disabled} displayAll={this.displayAll} all={this.state.all} playerToEdit={this.state.playerToEdit} isEdit={this.state.isEdit} editUser={this.editUser} players={this.filteredPlayers()} handleFilterChange={this.handleFilterChange} getAll={this.getAll} />
+        <Container ageOptions={this.state.ageOptions} savePlayer={this.savePlayer} handleChangeInputEdit={this.handleChangeInputEdit} handleChangeDropdownEdit={this.handleChangeDropdownEdit} disabled={this.state.disabled} displayAll={this.displayAll} all={this.state.all} playerToEdit={this.state.playerToEdit} isEdit={this.state.isEdit} editUser={this.editUser} players={this.filteredPlayers()} handleFilterChange={this.handleFilterChange} getAll={this.getAll} />
       </div>
     );
   }
