@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Players Database</title>
+</head>
+
+
+
+<body>
+    <h1>Players Database</h1>
+    <div id='data-div'>
+        <div id='headers-wrapper'>
+            <h4 id='name-header'>Name</h4>
+            <h4>Age</h4>
+            <h4>State</h4>
+            <h4 class='small-header'>M/F</h4>
+            <h4 class='large-header'>Gender</h4>
+            <h4 class='small-header'>A/I</h4>
+            <h4 class='large-header'>Status</h4>
+        </div>
+
+        <div id='filters-wrapper'>
+            <div id='clear-wrapper'>
+                <button id='clear-button' class='data-btn'>Clear Filters</button>
+            </div>
+
+            <div id='age-input-wrapper'>
+                <input class='age-input' id='min-age-input' placeholder="Min" type="number" min="1" max="100">
+                <input class='age-input' id='max-age-input' placeholder="Max" type="number" min="1" max="100">
+            </div>
+
+            <select class='dropdown' id='states-dropdown'>
+                <option id='reset-state' selected value>All</option>
+            </select>
+
+            <select class='dropdown' id='gender-dropdown'>
+                <option id='reset-gender'>M/F</option>
+                <option id='filter-male'>M</option>
+                <option id='filter-female'>F</option>
+            </select>
+
+            <select class='dropdown' id='status-dropdown'>
+                <option id='reset-status' selected value>A/I</option>
+                <option id='filter-active'>A</option>
+                <option id='filter-inactive'>I</option>
+            </select>
+        </div>
+
+        <div id='edit-wrapper'>
+            <button id='edit-btn' class='data-btn'>Edit Data</button>
+            <button id='cancel-btn' class='data-btn'>Cancel Edits</button>
+            <button id='save-btn' class='data-btn'>Save Edits</button>
+        </div>
+
+        <h3 id='total-display'>Total:</h3>
+
+        <div id='players-wrapper'>
+            <!--each player div gets appended here-->
+        </div>
+
+    </div>
+</body>
+<script src='script.js'></script>
+
+</html>
