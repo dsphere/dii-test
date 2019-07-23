@@ -1,43 +1,68 @@
-# Demosphere Code Test
-Please pick **any** of the two problems below to complete. You can use any JS framework such as React, Angular, or Vue that you are comfortable building this solution. Data persistence is not required.
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-You are encouraged to submit the test answers within 48 hours; however, we understand you may need more time due to other commitments. Please communicate any submission delay to the hiring manager.
+## Available Scripts
 
-Test Data URL: https://dii-test.s3.amazonaws.com/players.json
+In the project directory, you can run:
 
-Please use the above URL provided to fetch the test data. Fork this repository and submit a PR when you are done with your solution. _Note_: We encourage you to use a [private repo](https://help.github.com/en/articles/setting-repository-visibility#making-a-repository-private) so that other candidates cannot gain access to your solution.
+### `npm start`
 
-## Problem 1 - Filtering
-Create a web interface that allows a user:
+Runs the app in the development mode.<br>
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-1. To filter a list of players based on specific criteria. These are the search filters you will be creating based on the test data:
-    - Age: allow the user to filter for players within a specific age or age range (e.g. 7, 5-9, 15-17, etc.)
-    - Gender: allow the user to filter for players based on their specified gender
-    - State:  allow the user to filter for players based on the state they reside in from available test data
-    - Status:  allow the user to filter for players based on their status (active/inactive)
+The page will reload if you make edits.<br>
+You will also see any lint errors in the console.
 
-You can apply more than one filter to narrow down your search results.
+### `npm test`
 
-2. To edit the information of any player. 
+Launches the test runner in the interactive watch mode.<br>
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-**Assumption:**
+### `npm run build`
 
-When more than one filter is applied, the “AND” operator applies to all filters. For example, an age filter of 15-17 and a location filter of VA should only show players that are aged 15, 16, or 17 and are from VA.  All filters are case insensitive. Data persistence is not required when editing user information.
+Builds the app for production to the `build` folder.<br>
+It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The output should show all the players that fit within the specific criteria along with the number of players that fit the criteria.
+The build is minified and the filenames include the hashes.<br>
+Your app is ready to be deployed!
 
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-## Problem 2 - Drag and Drop
-Create a web interface for a user: 
+### `npm run eject`
 
-1. To easily create teams from the available player list. 
-    - Visually indicate which players are ACTIVE and which are INACTIVE
-    - Display 3 Teams with empty roster slots (Team 1, Team 2, and Team 3)
-2.   To drag ACTIVE Players onto Teams.
-     - Players can be dragged from one team to another
-3. To edit the information of players that are not in any team
+**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-The output should show the three team rosters with their players, along with a list of all the players not assigned to a team.
+If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-**Assumption:**
-Data persistence is not required when editing user information or creating teams.
+Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+
+You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+
+## Learn More
+
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+
+To learn React, check out the [React documentation](https://reactjs.org/).
+
+### Code Splitting
+
+This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+
+### Analyzing the Bundle Size
+
+This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+
+### Making a Progressive Web App
+
+This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+
+### Advanced Configuration
+
+This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+
+### Deployment
+
+This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+
+### `npm run build` fails to minify
+
+This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
